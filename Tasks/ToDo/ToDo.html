@@ -37,7 +37,7 @@
             background-color: transparent;
             color: white;
             padding: 10px 20px;
-            margin: 20px;
+            margin: 10px;
         }
 
         #btn1 {
@@ -66,15 +66,8 @@
             font-size: 18px;
         }
 
-        #list p {
-            display: inline-block;
-            width: 40%;
-            background-color: white;
-            color: black;
-            border-radius: 5px;
-            padding: 5px;
-            margin: 10px;
-            text-transform: capitalize;
+        .wrapper {
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -90,27 +83,99 @@
     </div>
 
     <script>
+        // function task() {
+
+        //First approach
+
+        // let value = document.getElementById('add').value;
+        // let btnvalue = document.createTextNode('Edit');
+        // let btnvalue2 = document.createTextNode('Delete');
+
+        // let node = document.createElement('p');
+        // let node2 = document.createElement('button');
+        // let node3 = document.createElement('button');
+        // let node4 = document.createElement('input');
+
+        // node4.type = 'checkbox';
+
+        // node.innerText = value;
+        // node2.appendChild(btnvalue);
+        // node3.appendChild(btnvalue2);
+
+        // document.getElementById('list').appendChild(node4);
+        // document.getElementById('list').appendChild(node);
+        // document.getElementById('list').appendChild(node2);
+        // document.getElementById('list').appendChild(node3);
+        // }
+
+
+
+
+        //Second Approach
+
+
         function task() {
+
             let value = document.getElementById('add').value;
-            let btnvalue = document.createTextNode('Edit');
-            let btnvalue2 = document.createTextNode('Delete');
+            let list = document.createElement('div');
+            list.className = 'wrapper';
+            let text = `<input type='checkbox' class='tik'> <input type='text' disabled class='task' value='${value}'> <button class='ed'>Edit</button> <button class='del'>Delete</button>`;
+            list.innerHTML = text;
+            document.getElementById('list').appendChild(list);
 
-            let node = document.createElement('p');
-            let node2 = document.createElement('button');
-            let node3 = document.createElement('button');
-            let node4 = document.createElement('input');
+            //Clearing input
 
-            node4.type = 'checkbox';
+            document.getElementById('add').value = '';
 
-            node.innerText = value;
-            node2.appendChild(btnvalue);
-            node3.appendChild(btnvalue2);
 
-            document.getElementById('list').appendChild(node4);
-            document.getElementById('list').appendChild(node);
-            document.getElementById('list').appendChild(node2);
-            document.getElementById('list').appendChild(node3);
+            //checked
 
+            let c_btn = document.querySelectorAll('.tik');
+            c_btn.forEach(checkbox => {
+                checkbox.addEventListener('change', function () {
+                    let pdiv = this.parentElement;
+                    if (checkbox.checked) {
+                        pdiv.style.border = 'yellow 1px solid'
+                        pdiv.style.borderRadius = '10px'
+                    }
+                    else {
+                        pdiv.style.border = ''
+                    }
+                })
+            })
+
+            //Delete button
+
+            let d_btn = document.querySelectorAll('.del');
+            d_btn.forEach(button => {
+                button.addEventListener('click', function () {
+                    let pdiv = this.parentElement;
+                    pdiv.remove();
+                })
+            });
+
+
+            //Edit
+
+            let e_btn = document.querySelectorAll('.ed');
+            e_btn.forEach(button => {
+                button.addEventListener('click', function () {
+                    let pdiv = this.previousElementSibling;
+                    console.log(pdiv);
+                    // let check = pdiv.disabled ? pdiv.removeAttribute('disabled') : pdiv.setAttribute('disabled', 'true');
+
+                    if (pdiv.disabled) {
+                        pdiv.removeAttribute('disabled');
+                        this.innerText = 'Save'
+                        pdiv.style.border = '1px solid yellow'
+                    }
+                    else {
+                        pdiv.setAttribute('disabled', 'true');
+                        pdiv.style.border = '1px solid rgba(255, 255, 255, 0.664)'
+                        this.innerText = 'Edit'
+                    }
+                })
+            })
         }
     </script>
 </body>
