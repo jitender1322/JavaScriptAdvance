@@ -13,7 +13,7 @@
         }
 
         body {
-            background-color: black;
+            background-color: #171717;
             color: white;
         }
 
@@ -119,7 +119,7 @@
             let value = document.getElementById('add').value;
             let list = document.createElement('div');
             list.className = 'wrapper';
-            let text = `<input type='checkbox' class='tik'> <input type='text' disabled class='task' value='${value}'> <button class='ed'>Edit</button> <button class='del'>Delete</button>`;
+            let text = `<input type='checkbox' class='tik'> <input type='text' disabled value='${value}'> <button class='ed'>Edit</button> <button class='del'>Delete</button>`;
             list.innerHTML = text;
             document.getElementById('list').appendChild(list);
 
@@ -131,10 +131,11 @@
             //checked
 
             let c_btn = document.querySelectorAll('.tik');
-            c_btn.forEach(checkbox => {
-                checkbox.addEventListener('change', function () {
+            c_btn.forEach(check => {
+                check.addEventListener('change', function () {
                     let pdiv = this.parentElement;
-                    if (checkbox.checked) {
+                    console.log(pdiv);
+                    if (check.checked) {
                         pdiv.style.border = 'yellow 1px solid'
                         pdiv.style.borderRadius = '10px'
                     }

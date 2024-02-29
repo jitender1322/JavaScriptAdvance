@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#container {
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.c-1 {
+    margin: 10px;
+    width: 22%;
+}
+
+.c-1 img {
+    width: 250px;
+}
+
+.c-1 p {
+    margin: 5px 0;
+    color: #535766;
+}
+
+.s-1 {
+    font-weight: 700;
+}
+
+.s-2 {
+    margin: 0 5px;
+    font-size: 14px;
+    color: #535766;
+    text-decoration: line-through;
+}
+
+.s-3 {
+    color: #ff905a;
+    font-size: 14px;
+}
